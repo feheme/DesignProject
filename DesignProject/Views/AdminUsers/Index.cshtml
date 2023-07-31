@@ -1,0 +1,38 @@
+﻿@using EntityLayer.Concrete
+@model List<AppUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<table class="table table-xs mb-0">
+    <thead>
+        <tr>
+          
+            <th>Ad Soyad</th>
+ 
+            <th>Durum</th>
+            <th>ıd</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            
+      
+        <tr>
+            
+            <td>@item.Name @item.Surname</td>
+            
+             <td><i class="fa fa-circle-o text-success  mr-2"></i>Aktif</td>    
+            <td>@item.WorkLocationID</td>
+           
+            
+                    
+        </tr>
+        }
+    </tbody>
+</table>
+<a href="/Register/Index/" class="btn btn-info">Yeni Kullanıcı Ekle</a>
+

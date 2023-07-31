@@ -1,0 +1,146 @@
+﻿@using EntityLayer.Concrete
+@model Booking
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+<head>
+      <style>
+        .success-message {
+            background-color: #c5f3c3;
+            color: #277d27;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+         .warning-message {
+               background-color: #fff3cd;
+                color: #856404;
+                padding: 10px;
+                margin-bottom: 10px;
+        }
+         .alert-message {
+            background-color: #f8d7da;
+             color: #721c24;
+             padding: 10px;
+             margin-bottom: 10px;
+        }
+        .change-message {
+           background-color: #cce5ff;
+            color: #004085;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Otel Admin Giriş Paneli</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/adminweb/images/favicon.png">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
+    <link href="~/adminweb/css/style.css" rel="stylesheet">
+</head>
+
+<body class="h-100">
+
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="form-input-content">
+                        <div class="card login-form mb-0">
+                            <div class="card-body pt-5">
+                            <h1>Rezervasyon Güncelleme Sayfası</h1>
+
+                                <form method="post">
+                                    @if (Model.Status == "Onaylandı")
+                                    {
+                                         <div class="success-message">
+                                                Başarılı! İşlem tamamlandı.
+                                         </div>
+                                    }
+                                    @if (Model.Status == "Onay Bekliyor")
+                                    {
+                                          <div class="warning-message">
+                                                Mesajınız Onay Bekliyor.
+                                         </div>
+                                    }
+
+                                     @if (Model.Status == "İptal Edildi")
+                                    {
+                                         <div class="alert-message ">
+                                                Rezervasyonunuz İptal Edildi.
+                                         </div>
+                                    }
+
+                                    @if (Model.Status == "Müşteri Aranacak")
+                                    {
+                                          <div class="change-message">
+                                                Rezervasyon İçeriğini Değiştirebilirsiniz!
+                                         </div>
+                                         <input type="hidden" asp-for="BookingID" />            
+                                         <input type="hidden" asp-for="Name" />         
+                                         <input type="hidden" asp-for="Mail" />         
+                                         <input type="hidden" asp-for="PhoneNumber" />         
+                                         <input type="hidden" asp-for="RoomName" />         
+                                         <input type="hidden" asp-for="SpecialRequest" />         
+                                         <input type="hidden" asp-for="Status" />         
+
+                                   
+
+                                    <br />
+                                    <label>Misafir Giriş Tarihi</label>
+                                    <input type="date" asp-for="CheckIn" class="form-control" />
+                                    <span class="text text-danger" asp-validation-for="CheckIn"></span>
+
+                                    <br />
+                                    <label>Misafir Çıkış Tarihi</label>
+                                    <input type="date" asp-for="CheckOut" class="form-control" />
+                                    <span class="text text-danger" asp-validation-for="CheckOut"></span>
+
+
+                                    <br />
+                                    <label>Misafir Yetişkin Sayısı</label>
+                                     <select class="form-select" id="select1" asp-for="AdultCount">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                    <span class="text text-danger" asp-validation-for="AdultCount"></span>
+
+
+                                    <br />
+                                    <label>Misafir Çocuk Sayısı</label>
+                                    <select class="form-select" id="select2" asp-for="ChildCount">
+                                        <option value="0">Yok</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                    <span class="text text-danger" asp-validation-for="ChildCount"></span>
+
+
+                                    <br />                                                
+                                
+                                    <button class="btn btn-info">Rezervasyonu Güncelle</button>
+                                    }
+                                   
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/adminweb/plugins/common/common.min.js"></script>
+    <script src="~/adminweb/custom.min.js"></script>
+    <script src="~/adminweb/js/settings.js"></script>
+    <script src="~/adminweb/js/gleek.js"></script>
+    <script src="~/adminweb/js/styleSwitcher.js"></script>
+</body>
+
+</html>

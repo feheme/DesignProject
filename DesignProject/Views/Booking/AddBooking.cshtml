@@ -1,0 +1,167 @@
+﻿@model EntityLayer.Concrete.Booking
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-info text-uppercase">Rezervasyon PANELİ</h6>
+            <h1 class="mb-5">Odanızı Şimdi <span class="text-info text-uppercase">Rezerve EDİN</span></h1>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-6 text-end">
+                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s"
+                            src="~/hotel-html-template/img/room-1.jpg" style="margin-top: 25%;">
+                    </div>
+                    <div class="col-6 text-start">
+                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s"
+                            src="~/hotel-html-template/img/room-2.jpg">
+                    </div>
+                    <div class="col-6 text-end">
+                        <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s"
+                            src="~/hotel-html-template/img/room-3.jpg">
+                    </div>
+                    <div class="col-6 text-start">
+                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s"
+                            src="~/hotel-html-template/img/room-5.jpg">
+                    </div>
+                    @* <div class="col-6 text-start">
+                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s"
+                            src="~ViewBag.Image">
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form method="post" asp-action="AddBooking" asp-controller="Booking">
+                          @if (ViewBag.ErrorMessages != null)
+                            {
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach (var errorMessage in ViewBag.ErrorMessages)
+                                        {
+                                            <li>@errorMessage</li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                            @if (TempData.ContainsKey("SuccessMessage"))
+                            {
+                                <div class="alert alert-success">
+                                    @TempData["SuccessMessage"]
+                                </div>
+                            }
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" asp-for="Name" placeholder="Adınız">
+                                    <span class="text-danger" asp-validation-for="Name"></span>
+                                    <label for="name">Adınız</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" asp-for="Mail" placeholder="Mail Adresiniz">
+                                    <span class="text-danger" asp-validation-for="Mail"></span>
+
+                                    <label for="email">Mail Adresiniz</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating date" id="date3" data-target-input="nearest">
+                                    <input type="date" class="form-control datetimepicker-input" asp-for="CheckIn"
+                                        placeholder="Giriş Tarihi" required />
+                                    <span class="text-danger" asp-validation-for="CheckIn"></span>
+
+
+                                    <label for="checkin">Giriş Tarihi</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating date" id="date4" data-target-input="nearest">
+                                    <input type="date" class="form-control datetimepicker-input" asp-for="CheckOut"
+                                        placeholder="Çıkış Tarihi"  required />
+                                    <span class="text-danger" asp-validation-for="CheckOut"></span>
+
+                                    <label for="checkout">Çıkış Tarihi</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" id="select1" asp-for="AdultCount">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="AdultCount"></span>
+
+                                    <label for="select1">Yetişkin Sayısı</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" id="select2" asp-for="ChildCount">
+                                        <option value="0">Yok</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="ChildCount"></span>
+
+                                    <label for="select2">Çocuk Sayısı</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                  @*  <select class="form-select" id="select3" asp-for="RoomName">
+                                        <option value="Ultra Lüks Penthouse">Ultra Lüks Penthouse</option>
+                                        <option value="Deniz Manzaralı Aile Odası">Deniz Manzaralı Aile Odası</option>
+                                        <option value="Orman Kütüphaneli Suit">Orman Kütüphaneli Suit</option>
+                                        <option value="Teraslı İkiz Yataklı Oda">Teraslı İkiz Yataklı Oda</option>
+                                    </select>*@
+                                    
+                                 
+                                     <select asp-for="RoomName" class="form-control" style="background-color: white; color: black;">
+                                        @foreach (var item in ViewBag.v)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    </select>
+                                    <label for="" class="label">Oda Şeçiniz </label>
+                                    <span class="text-danger" asp-validation-for="RoomName"></span>
+
+                                    
+                                </div>
+                            </div>
+
+                             <div class="col-6">
+                                <div class="form-floating">
+                                    
+                                    <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="Telefon Numaranız">
+                                    <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+
+                                    <label for="email">Telefon Numaranız</label>
+                                    
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Özel İstekler" asp-for="SpecialRequest"
+                                        style="height: 100px"></textarea>
+                                    <span class="text-danger" asp-validation-for="SpecialRequest"></span>
+
+                                    <label for="message">Özel İstekler</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-info w-100 py-3" type="submit">Rezervasyon Yap</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
