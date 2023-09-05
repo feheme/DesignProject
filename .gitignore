@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+
+DesignProject/wwwroot/adminweb
+
+DesignProject/wwwroot/hotel-html-template
