@@ -363,6 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 
 
-DesignProject/wwwroot/adminweb
+/DesignProject/wwwroot/adminweb
 
-DesignProject/wwwroot/hotel-html-template
+/DesignProject/wwwroot/hotel-html-template
